@@ -1,36 +1,223 @@
-<main>
-  <div class="container">
+<main class="mt-5">
+  <div class="container-fluid px-5">
     <div class="row">
-        <div class="col-lg-8 row">
-            <div class="col-lg-6 col-xl-4" *ngFor="let item of productArray">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="profile d-flex align-items-center">
-                      <img [src]="item.imgPath" alt="person name" />
-        
-                      <h2>{{item.name}}</h2>
-        
-                      <span class="d-flex align-items-center"
-                        ><img
-                          *ngIf="!item.rating"
-                          src="assets/star.png"
-                          alt="star img" />
-                        <img
-                          *ngIf="item.rating"
-                          src="assets/starFilled.png"
-                          alt="star img"
-                      />
-                      {{item.rating}}
-                    </span>
-                    </div>
+      <div class="col-lg-8 row">
+        <div class="col-lg-6 col-xl-6 col-xxl-4"  *ngFor="let item of productArray;let i = index" (click)="selectCard(item)">
+          <div class="prodcard" [ngClass]="addBlur(i)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div class="card-body">
+              <div class="profile d-flex align-items-center">
+                <img [src]="item.imgPath" alt="person name" />
+
+                <h2>{{item.name}}</h2>
+
+                <span class="d-flex align-items-center"><img *ngIf="!item.rating" src="assets/star.png"
+                    alt="star img" />
+                  <img *ngIf="item.rating" src="assets/starFilled.png" alt="star img" />
+                  {{item.rating}}
+                </span>
+              </div>
+              <div class="location" style="margin-top: 17.32px;">
+                <img src="assets/building.png" alt="item distance">
+                {{item.distance}}
+              </div>
+              <div class="location">
+                <img src="assets/location.png" alt="location">
+                {{item.location}}
+              </div>
+              <div class="quality">
+                <span *ngFor="let quality of item.quality">
+                  <img src="assets/circle.png" alt="circle">
+                  {{quality}}
+                </span>
+              </div>
+              <div class="tags">
+                <span *ngFor="let quality of item.tags">
+                  {{quality}}
+                </span>
+              </div>
+
+
+              <div class="slick-wrapper" *ngIf="!item.metaData">
+                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+                  <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                    <img src="https://picsum.photos/536/354?{{slide}}" alt="" width="100%">
+                  </div>
+                </ngx-slick-carousel>
+              </div>
+
+              <div *ngIf="item.metaData" class="metaData">
+                <div class="d-flex">
+                  <img src="assets/maps.png" alt="">
+                  <div class="ps-2">
+                    <div>Job types</div>
+                    <span>Residential | Commercial | Civil </span>
+                  </div>
+                </div>
+                <div class="d-flex mt-1">
+                  <img src="assets/persons.png" alt="">
+                  <div class="ps-2">
+                    <div>Resources</div>
+                    <span>Tradesman: 4 | Apprentice: 5 | Labourer: 3</span>
                   </div>
                 </div>
               </div>
-        </div>
-        <div class="col-lg-4">
 
+              <div class="btnWrap d-flex align-items-center justify-content-end ">
+                <button class="primaryBtn">Contact</button>
+
+                <button class="primaryBtn">Invite to Job</button>
+
+              </div>
+
+
+
+
+
+            </div>
+          </div>
         </div>
-    
+        <div class="d-flex justify-content-center popup">
+          <div class="card">
+            <div class="card-body d-flex flex-column justify-content-center align-items-start px-4 py-4">
+              <h3>Network with a wider pool of skilled tradies</h3>
+              <p>Upgrade your plan to be able to contact tradies on the network</p>
+              <button class="primaryBtn">Upgrade Now</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-4">
+        <div class="sidebar">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex">
+                <div class="col-8">
+                  <span>FREE TRIAL</span>
+                  <h3 class="mt-4">You've reached the limit of your free trial</h3>
+                  <p>To connect with more tradies right away, upgrade to a higher subscription tier.</p>
+                </div>
+                <div class="col-4 d-flex justify-content-end mt-5">
+                  <button class="primaryBtn">Subscribe</button>
+                </div>
+              </div>
+              <p>Remaining</p>
+
+              <div class="d-flex justify-content-between footer">
+                <span>Contacts:  <i> 0 / 1</i></span>
+                <span>Searches:  <i> 0 / 3</i></span>
+                <span>Invites:  <i> 2 / 5</i></span>
+              </div>
+
+            </div>
+
+            <img src="assets/arrowCircle.png" alt="">
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </main>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" >
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+      <div class="profile">
+        <div class="profile d-flex align-items-center">
+          <img [src]="selectedItem?.imgPath" alt="person name" />
+
+          <h2>{{selectedItem?.name}}</h2>
+
+          <span class="d-flex align-items-center"><img *ngIf="!selectedItem.rating" src="assets/star.png"
+              alt="star img" />
+            <img *ngIf="selectedItem?.rating" src="assets/starFilled.png" alt="star img" />
+            {{selectedItem?.rating}}
+          </span>
+
+          <button class="primaryBtn ms-3">View Profile</button>
+        </div>
+
+      </div>
+
+      <div class="profileStrip">
+        Profile Overview
+      </div>
+
+      <div class="location" style="margin-top: 30px;">
+        <img src="assets/building.png" alt="item distance">
+        {{selectedItem.distance}}
+      </div>
+      <div class="location">
+        <img src="assets/location.png" alt="location">
+        {{selectedItem.location}}
+      </div>
+      <div class="quality">
+        <span *ngFor="let quality of selectedItem.quality">
+          <img src="assets/circle.png" alt="circle">
+          {{quality}}
+        </span>
+      </div>
+
+
+      <div class="meta">
+        I am an entrepreneur offering construction services with my small but skilled team in Brisbane. With a passion
+        for excellence, we deliver exceptional residential and commercial construction services. <span>Read more</span>
+      </div>
+
+      <div class="slick-wrapper2" >
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfigModal">
+          <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+            <img src="https://picsum.photos/536/354?{{slide}}" alt="" width="100%">
+          </div>
+        </ngx-slick-carousel>
+      </div>
+
+      <div class="trades">
+        <div>
+          <span>Trades and specialisations</span>
+        </div>
+        <div class="tags d-flex flex-wrap justify-content-center">
+          <span>Builder</span>
+          <span>Specialisation A</span>
+          <span>Specialisation B</span>
+          <span>Specialisation C</span>
+          <span>Specialisation D</span>
+          <span>Specialisation E</span>
+          <span>Specialisation F</span>
+          <span>Specialisation G</span>
+
+          <div class="viewMore">
+            <span>View More <img src="assets/arrowCircle.png" alt="arrow"></span>
+          </div>
+        </div>
+
+        <div class="tags tags2 d-flex flex-wrap justify-content-start">
+          <span>Trade B</span>
+          <span>Specialisation Z</span>
+        </div>
+
+        <div class="tags tags2 d-flex flex-wrap justify-content-start">
+          <span>Trade C</span>
+          <span>Specialisation G</span>
+        </div>
+
+        <hr>
+
+        <div class="d-flex justify-content-end">
+          <button class="primaryBtn me-3">Contact</button>
+          <button class="primaryBtn btnOutline">Invite to Job</button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

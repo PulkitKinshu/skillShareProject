@@ -1,0 +1,95 @@
+.slick-wrapper {
+  width: 100%;
+  margin: 36px auto;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+}
+
+.slick-wrapper .slick-slide img {
+  height: 87.98px;
+  /* Adjust the image height value as needed */
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+
+
+.slick-wrapper .slick-slide {
+  margin-right: 15.85px;
+  /* Adjust the spacing value as needed */
+}
+
+.slick-wrapper .slick-slide:last-child {
+  margin-right: 0;
+  /* Remove margin from the last slide */
+}
+
+
+
+.slick-wrapper2 {
+  width: 100%;
+  margin: 51px auto;
+
+  .slick-slide img {
+    height: 238px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+}
+
+
+.slick-slide {
+  margin-right: 15.85px;
+}
+
+.slick-slide:last-child {
+  margin-right: 0;
+}
+
+
+.addBlur {
+
+  color: transparent;
+  /* Make the text transparent */
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+  /* Apply a blur effect to the text */
+  opacity: 0.4;
+  /* Adjust the opacity to control the faded effect */
+}
+
+.popup {
+  margin-top: -388px;
+
+  .card {
+    background: #222222;
+    box-shadow: 0px 8px 24px rgba(111, 111, 111, 0.25);
+    border-radius: 28px;
+    width: 550.73px;
+    height: 213.07px;
+    min-width: unset;
+    max-width: unset;
+    min-height: unset;
+
+    h3 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #fff;
+
+    }
+
+    p {
+      font-size: 16px;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .primaryBtn {
+      min-width: 157px;
+      height: 41px;
+      font-size: 18px;
+    }
+  }
+}

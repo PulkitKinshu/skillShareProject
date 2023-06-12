@@ -567,3 +567,78 @@ main {
 
   }
 }
+
+
+.bottomSection{
+  position: relative;
+  >img{
+    position: absolute;
+    right: 3%;
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    bottom: 5%;
+    cursor: pointer;
+  }
+  >h3{
+    color: $textColorDark3;
+    font-size: $fontSize2;
+    font-weight: 500;
+    margin-bottom: 20px;
+
+  }
+
+  >span{
+    display: flex;
+    align-items: center;
+    img{
+      width: 9px;
+      height: 9px;
+      object-fit: contain;
+      margin-right: 10px;
+      position: relative;
+      top: -1px;
+
+    }
+    font-size: $fontSize3;
+    color: $textColorDark3;
+  }
+  >p{
+    color: $textColorDark3;
+    font-size: $fontSize6;
+  }
+
+  >div{
+    >span{
+      color: #595959;
+      font-size: $fontSize4;
+
+    }
+
+
+    div.taglines{
+      display: flex;
+      margin-top: 16px;
+      img{
+        width:26px;
+        height: 18px;
+        object-fit: contain;
+      }
+
+      div{
+        padding-left: 21px;
+        h4{
+          color: $textlightBLue;
+          font-size: $fontSize3;
+
+        }
+        p{
+          color: #595959;
+          font-size: $fontSize5;
+
+        }
+      }
+
+    }
+  }
+}
